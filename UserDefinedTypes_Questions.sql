@@ -90,3 +90,23 @@ insert into @NewProduct values
 exec InsertProducts @Product = @NewProduct;
 
 Select * from Product;
+
+/*4. View the inserted data from the Products table.*/
+select * from Product;
+
+/*Create another procedure to bulk delete products by accepting a ProductTableType that only contains product names to delete.*/
+create procedure ProductTableDelete
+	@ToDelete ProductTableType readonly
+as
+begin
+	delete from Product
+	where ProductName in (select ProductName from @ToDelete)
+end
+
+declare @Delete ProductTableType
+insert into @Delete (ProductName)
+values('KeyBoard')
+
+exec ProductTableDelete @ToDelete = @Delete;
+
+select * from Product;
