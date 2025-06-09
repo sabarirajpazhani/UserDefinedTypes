@@ -41,3 +41,14 @@ insert into Teachers values
 
 select * from Students;
 select * from Teachers;
+
+
+
+
+---Define a table type for multiple student records
+create type	StudentTableType as table(
+	StudentName varchar(80),
+	StudentEmail EmailType,
+	StudentPhone PhoneType
+);
+
