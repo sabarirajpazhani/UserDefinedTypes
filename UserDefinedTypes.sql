@@ -52,3 +52,23 @@ create type	StudentTableType as table(
 	StudentPhone PhoneType
 );
 
+--How to use User-Defined Table Type in a Stored Procedure?
+create procedure spInsertStudents
+	@Students StudentTableType readonly
+as
+begin
+	insert into Students (StudentName, StudentEmail, StudentPhone)
+	select StudentName, StudentEmail, StudentPhone from @Students
+end
+
+--How to call this procedure from T-SQL?
+declare @NewStudents StudentTableType;
+
+insert into @NewStudents (StudentName, StudentEmail, StudentPhone)
+values
+('Arun', 'Arun@gmail.com', '9876545237'),
+('Balaji', 'Balaji@gmail.com', '7687654123');
+
+exec spInsertStudents @Students = @NewStudents;
+
+select * from Students;
