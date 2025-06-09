@@ -45,6 +45,8 @@ update Customers
 set CustomerPhone = '9876326745'
 where CustomerID = 1;
 
+
+/*Q5: Drop the table and drop the user-defined types (after all tasks complete).*/
 drop table Customers;
 drop table Orders;
 
