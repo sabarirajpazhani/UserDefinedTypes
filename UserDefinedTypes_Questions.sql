@@ -1,4 +1,4 @@
---Part 1: User-Defined Data Type (UDDT) – Practice Questions 
+--Part 1: User-Defined Data Type (UDDT) â€“ Practice Questions 
 /* Q1: Create a table named Customers with the following columns:
 CustomerID (INT, Primary Key)
 
@@ -19,3 +19,10 @@ create table Customers(
 	CustomerPhone PhoneType
 );
 
+/*Q2: Insert 3 records into Customers table using UDDTs*/
+insert into Customers values
+(1, 'Arun', 'Arun@gmail.com', '9987876767'),
+(2, 'Bala', 'Bala@gmail.com', '7767667898'),
+(3, 'Charan','Charan@gmail.com','9987876767');
+
+select * from Customers;
