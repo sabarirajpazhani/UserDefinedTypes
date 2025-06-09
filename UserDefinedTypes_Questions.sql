@@ -26,3 +26,16 @@ insert into Customers values
 (3, 'Charan','Charan@gmail.com','9987876767');
 
 select * from Customers;
+
+/*Q3: Create another table called Orders where:
+OrderID (INT, PK)
+OrderDate (DATE)
+CustomerID (FK to Customers)
+DeliveryPhone (use PhoneType)*/
+create table Orders(
+	OrderID int primary key,
+	OderDate date,
+	CustomerID int, 
+	DeliveryPhone PhoneType
+	foreign key (CustomerID) references Customers(CustomerID)
+);
