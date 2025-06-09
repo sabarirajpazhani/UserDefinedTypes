@@ -52,3 +52,41 @@ drop table Orders;
 
 drop type EmailType;
 drop type PhoneType;
+
+
+--PART 2: User-Defined Table Type (UDTT)
+/*Q1: Create Products Table*/
+create table Product(
+	ProductID int identity(1,1) primary key,
+	ProductName varchar(80),
+	ProductPrice int
+);
+
+/*Write a stored procedure InsertProducts that accepts ProductTableType as input and inserts data into Products.*/
+--Creating the ProductTableType
+create Type ProductTableType as table(
+	ProductID int identity(1,1) primary key,
+	ProductName varchar(80),
+	ProductPrice int
+);
+
+--creating the stored Procedure
+create procedure InsertProducts
+	@Product ProductTableType readonly
+as
+begin
+	insert into Product(ProductName, ProductPrice)
+	select ProductName, ProductPrice  from @Product
+end
+
+/*Q3: Declare a variable of type ProductTableType, add 3 records, and execute InsertProducts.*/
+declare @NewProduct ProductTableType
+
+insert into @NewProduct values 
+('KeyBoard', 2500),
+('Mouse', 800),
+('EarPods', 1500);
+
+exec InsertProducts @Product = @NewProduct;
+
+Select * from Product;
