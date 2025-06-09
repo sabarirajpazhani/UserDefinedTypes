@@ -39,3 +39,14 @@ create table Orders(
 	DeliveryPhone PhoneType
 	foreign key (CustomerID) references Customers(CustomerID)
 );
+
+/*Q4: Update the phone number of a customer using PhoneType.*/
+update Customers
+set CustomerPhone = '9876326745'
+where CustomerID = 1;
+
+drop table Customers;
+drop table Orders;
+
+drop type EmailType;
+drop type PhoneType;
